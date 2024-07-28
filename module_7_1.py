@@ -22,14 +22,12 @@ class Shop:
 
     def add(self, *products):
         existing_products = set()
-        try:
-            with open(self._file_name, 'r', encoding='utf-8') as file:
-                for line in file:
-                    existing_product = line.strip().split(', ')[0]
-                    existing_products.add(existing_product)
-            file.close()
-        except FileNotFoundError:
-            pass
+
+        with open(self._file_name, 'r', encoding='utf-8') as file:
+            for line in file:
+                existing_product = line.strip().split(', ')[0]
+                existing_products.add(existing_product)
+        file.close()
 
         with open(self._file_name, 'a', encoding='utf-8') as file:
             for products in products:
@@ -38,7 +36,7 @@ class Shop:
                 else:
                     file.write(str(products) + '\n')
                     existing_products.add(products.name)
-                file.close()
+        file.close()
 
 s1 = Shop()
 p1 = Product('Potato', 50.5, 'Vegetables')
