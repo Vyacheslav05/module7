@@ -27,6 +27,7 @@ class Shop:
                 for line in file:
                     existing_product = line.strip().split(', ')[0]
                     existing_products.add(existing_product)
+            file.close()
         except FileNotFoundError:
             pass
 
@@ -37,6 +38,7 @@ class Shop:
                 else:
                     file.write(str(products) + '\n')
                     existing_products.add(products.name)
+                file.close()
 
 s1 = Shop()
 p1 = Product('Potato', 50.5, 'Vegetables')
